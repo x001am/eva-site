@@ -1,0 +1,30 @@
+{
+  "project": "Методология Созидания",
+  "type": "static-website",
+  "stack": "html-files",
+  "future_stack": "astro-ssg",
+  "hosting": "github-pages",
+  "language": "ru",
+  "phase": 1,
+  "theme": {
+    "default": "light",
+    "toggle": true,
+    "persistence": "localStorage"
+  },
+  "design_system": {
+    "prefix": "ms-",
+    "fonts": ["Cormorant Garamond", "Inter"],
+    "accent_primary": "#C9A84C",
+    "accent_secondary": "#3A7D5C"
+  },
+  "features": {
+    "theme_toggle": true,
+    "share_buttons": ["vk", "dzen", "rutube"],
+    "scroll_reveal": true,
+    "card_tilt_3d": true,
+    "particles": true,
+    "parallax": true
+  },
+  "mentor_mode": true,
+  "communication_language": "ru"
+}
