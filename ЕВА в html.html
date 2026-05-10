@@ -88,9 +88,9 @@ body { background:var(--bg); color:var(--cream); font-family:var(--sans); font-w
 .card-3d:hover .card-3d-inner { border-color:var(--border-h); box-shadow:0 20px 60px rgba(0,0,0,.4); }
 .card-3d-glow { position:absolute; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(201,168,76,.12) 0%, transparent 70%); transform:translate(-50%,-50%); pointer-events:none; opacity:0; transition:opacity .3s; z-index:5; }
 .card-3d:hover .card-3d-glow { opacity:1; }
-.card-img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; filter:brightness(.85); transition:filter .4s, transform .4s; }
+.card-img-wrap { overflow:hidden; position:relative; aspect-ratio:16/9; }
+.card-img { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.85); transition:filter .4s, transform .4s; }
 .card-3d:hover .card-img { filter:brightness(1); transform:scale(1.03); }
-.card-img-wrap { overflow:hidden; position:relative; }
 .card-num { position:absolute; top:10px; right:16px; font-family:var(--serif); font-size:5rem; font-weight:700; color:rgba(245,240,232,.04); line-height:1; pointer-events:none; }
 .card-body { padding:1.6rem; }
 .card-body h3 { font-family:var(--serif); font-size:1.25rem; font-weight:500; margin-bottom:.8rem; line-height:1.35; }
@@ -114,7 +114,8 @@ body { background:var(--bg); color:var(--cream); font-family:var(--sans); font-w
 .topic-card-glow { position:absolute; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle, rgba(58,125,92,.15) 0%, transparent 70%); transform:translate(-50%,-50%); pointer-events:none; opacity:0; transition:opacity .3s; z-index:5; }
 .topic-card:hover .topic-card-glow { opacity:1; }
 .tc-img { overflow:hidden; }
-.tc-img img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; filter:brightness(.8); transition:filter .4s, transform .4s; }
+.tc-img { aspect-ratio:16/9; overflow:hidden; }
+.tc-img img { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.8); transition:filter .4s, transform .4s; }
 .topic-card:hover .tc-img img { filter:brightness(1); transform:scale(1.04); }
 .tc-body { padding:1.4rem; }
 .tc-body h3 { font-family:var(--serif); font-size:1.15rem; font-weight:500; margin-bottom:.6rem; color:var(--cream); }
