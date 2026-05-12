@@ -119,6 +119,10 @@ body { background:var(--bg); color:var(--cream); font-family:var(--sans); font-w
 .card-body { padding:1.6rem; }
 .card-body h3 { font-family:var(--serif); font-size:1.25rem; font-weight:500; margin-bottom:.8rem; line-height:1.35; }
 .card-body p { font-size:.88rem; color:var(--cream-f); line-height:1.7; }
+.card-arrow { display:inline-block; margin-top:.9rem; font-size:.78rem; font-weight:500; color:var(--gold); letter-spacing:.04em; transition:transform .3s; }
+.card-3d--link { cursor:pointer; }
+.card-3d--link .card-3d-link { display:block; text-decoration:none; color:inherit; height:100%; }
+.card-3d--link:hover .card-arrow { transform:translateX(5px); }
 
 /* ═══ ABOUT PROJECT BLOCK ═══ */
 .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
@@ -278,18 +282,21 @@ body { background:var(--bg); color:var(--cream); font-family:var(--sans); font-w
     <p class="questions-bridge">Одна методология — разные стороны жизни. Какой бы вопрос вас ни привёл сюда, подход к пониманию един.</p>
   </div>
   <div class="cards-row">
-    <div class="card-3d reveal" data-tilt>
+    <div class="card-3d card-3d--link reveal" data-tilt>
       <div class="card-3d-glow"></div>
-      <div class="card-3d-inner">
-        <div class="card-img-wrap">
-          <span class="card-num">01</span>
-          <img class="card-img" src="images/question-society.jpg" alt="Общество">
+      <a href="society.html" class="card-3d-link">
+        <div class="card-3d-inner">
+          <div class="card-img-wrap">
+            <span class="card-num">01</span>
+            <img class="card-img" src="images/question-society.jpg" alt="Общество">
+          </div>
+          <div class="card-body">
+            <h3>Как понимать происходящее в обществе?</h3>
+            <p>Почему события повторяются? Кто влияет на процессы? Как увидеть систему за потоком новостей и мнений — и начать различать причины, а не только следствия.</p>
+            <span class="card-arrow">Читать →</span>
+          </div>
         </div>
-        <div class="card-body">
-          <h3>Как понимать происходящее в обществе?</h3>
-          <p>Почему события повторяются? Кто влияет на процессы? Как увидеть систему за потоком новостей и мнений — и начать различать причины, а не только следствия.</p>
-        </div>
-      </div>
+      </a>
     </div>
     <div class="card-3d reveal" data-tilt>
       <div class="card-3d-glow"></div>

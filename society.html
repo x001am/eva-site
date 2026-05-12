@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как понимать происходящее в обществе — Методология Созидания</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --bg: #0C0F0E;
+  --surface: #1A1F1E;
+  --surface-h: #222826;
+  --cream: #F5F0E8;
+  --cream-f: rgba(245,240,232,.7);
+  --gold: #C9A84C;
+  --gold-d: #A8893A;
+  --green: #3A7D5C;
+  --green-d: #2C5F45;
+  --border: rgba(245,240,232,.08);
+  --border-h: rgba(245,240,232,.15);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+  --nav-scrolled-bg: rgba(12,15,14,.92);
+  --shadow-card: rgba(0,0,0,.4);
+}
+
+[data-theme="light"] {
+  --bg: #F5EFE3;
+  --surface: #EBE5D7;
+  --surface-h: #E0D9CB;
+  --cream: #1C201F;
+  --cream-f: rgba(28,32,31,.6);
+  --gold: #8B6610;
+  --gold-d: #6B500F;
+  --green: #2A6B4A;
+  --green-d: #1E4D33;
+  --border: rgba(28,32,31,.1);
+  --border-h: rgba(28,32,31,.22);
+  --nav-scrolled-bg: rgba(245,239,227,.93);
+  --shadow-card: rgba(0,0,0,.12);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { overflow-x:hidden; }
+body { background:var(--bg); color:var(--cream); font-family:var(--sans); font-weight:300; line-height:1.7; overflow-x:hidden; }
+
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--gold-d); border-radius:3px; }
+
+/* ═══ SMOOTH SCROLL CONTAINER ═══ */
+.smooth-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  will-change: transform;
+  backface-visibility: hidden;
+  overflow-x: hidden;
+}
+
+/* ═══ NAV ═══ */
+.nav { position:fixed; top:0; left:0; right:0; z-index:200; padding:1.2rem 3rem; display:flex; align-items:center; justify-content:space-between; transition:all .4s; }
+.nav.scrolled { background:var(--nav-scrolled-bg); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:.8rem 3rem; }
+.nav-logo { font-family:var(--serif); font-size:1.4rem; font-weight:500; color:var(--cream); text-decoration:none; letter-spacing:.02em; }
+.nav-logo em { color:var(--gold); font-style:italic; }
+.nav-links { display:flex; gap:2.2rem; list-style:none; }
+.nav-links a { color:var(--cream-f); text-decoration:none; font-size:.82rem; font-weight:400; letter-spacing:.06em; text-transform:uppercase; transition:color .3s; }
+.nav-links a:hover { color:var(--gold); }
+.theme-toggle { background:none; border:1px solid var(--border); border-radius:6px; width:34px; height:34px; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--cream-f); transition:all .3s; padding:0; flex-shrink:0; }
+.theme-toggle:hover { border-color:var(--border-h); color:var(--gold); }
+.icon-sun { display:none; }
+.icon-moon { display:block; }
+[data-theme="light"] .icon-sun { display:block; }
+[data-theme="light"] .icon-moon { display:none; }
+
+/* ═══ PAGE HERO ═══ */
+.page-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 3rem 7rem;
+  overflow: hidden;
+}
+.page-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('images/question-society.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  z-index: 0;
+}
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(12,15,14,.2) 0%,
+    rgba(12,15,14,.42) 35%,
+    rgba(12,15,14,.88) 68%,
+    rgba(12,15,14,1) 100%
+  );
+}
+[data-theme="light"] .page-hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(245,239,227,.12) 0%,
+    rgba(245,239,227,.5) 35%,
+    rgba(245,239,227,.92) 68%,
+    rgba(245,239,227,1) 100%
+  );
+}
+.page-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+}
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: 3rem;
+  font-size: .72rem;
+  font-weight: 400;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cream-f);
+}
+.breadcrumb a { color: var(--cream-f); text-decoration: none; transition: color .3s; }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb-sep { opacity: .35; }
+.topic-tag {
+  display: block;
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+}
+.page-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  letter-spacing: -.01em;
+}
+.page-hero h1 em { color: var(--gold); font-style: italic; }
+.hero-rule {
+  width: 56px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 1.8rem;
+  opacity: .55;
+}
+.page-hero-sub {
+  font-size: 1rem;
+  color: var(--cream-f);
+  max-width: 500px;
+  line-height: 1.85;
+}
+
+/* ═══ ARTICLE LAYOUT ═══ */
+.article-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 7rem 3rem 4rem;
+}
+.article-body { max-width: 720px; margin: 0 auto; }
+
+.chapter { position: relative; }
+.chapter-bg-num {
+  font-family: var(--serif);
+  font-size: 14rem;
+  font-weight: 700;
+  color: var(--cream);
+  opacity: .025;
+  line-height: 1;
+  position: absolute;
+  top: -3rem;
+  right: -3rem;
+  pointer-events: none;
+  letter-spacing: -.04em;
+  user-select: none;
+}
+
+/* Pull quote */
+.pullquote {
+  border-left: 2px solid var(--gold);
+  padding: 1.8rem 2.4rem;
+  margin: 2.8rem 0;
+  background: rgba(201,168,76,.03);
+  border-radius: 0 8px 8px 0;
+}
+[data-theme="light"] .pullquote { background: rgba(139,102,16,.03); }
+.pullquote p {
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  font-style: italic;
+  color: var(--cream-f);
+  line-height: 1.95;
+}
+
+/* Body text */
+.body-text p {
+  font-size: .96rem;
+  color: var(--cream-f);
+  line-height: 1.95;
+  margin-bottom: 1.6rem;
+}
+.body-text p:last-child { margin-bottom: 0; }
+
+/* ═══ VIDEO SECTION ═══ */
+.video-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 6rem 3rem;
+}
+.video-inner { max-width: 960px; margin: 0 auto; }
+.video-header { max-width: 680px; margin-bottom: 3rem; }
+.video-label {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: block;
+}
+.video-title {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.25;
+}
+.video-title em { color: var(--gold); font-style: italic; }
+.video-frame {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #06090A;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+.video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+.video-play-ring {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  opacity: .55;
+  transition: opacity .3s, transform .3s;
+}
+.video-placeholder:hover .video-play-ring { opacity: .85; transform: scale(1.06); }
+.video-placeholder p {
+  font-size: .78rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--cream-f);
+  opacity: .4;
+}
+.video-caption {
+  margin-top: 1.2rem;
+  font-size: .78rem;
+  color: var(--cream-f);
+  opacity: .5;
+  line-height: 1.6;
+}
+
+/* ═══ SUBTOPICS ═══ */
+.subtopics-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 7rem 3rem;
+}
+.subtopics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.subtopic-item {
+  background: var(--bg);
+  padding: 2.2rem 2.5rem;
+  display: flex;
+  gap: 1.6rem;
+  align-items: flex-start;
+  transition: background .25s;
+}
+.subtopic-item:hover { background: var(--surface-h); }
+.subtopic-n {
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 400;
+  color: var(--gold);
+  opacity: .18;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: opacity .25s;
+  user-select: none;
+}
+.subtopic-item:hover .subtopic-n { opacity: .45; }
+.subtopic-text h4 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--cream);
+  margin-bottom: .4rem;
+  line-height: 1.3;
+}
+.subtopic-text p {
+  font-size: .82rem;
+  color: var(--cream-f);
+  line-height: 1.7;
+}
+.subtopic-soon {
+  display: inline-block;
+  margin-top: .5rem;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .4;
+}
+.subtopics-caption {
+  text-align: center;
+  margin-top: 2rem;
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--cream-f);
+  opacity: .6;
+}
+
+/* ═══ CLOSING ═══ */
+.closing-section {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 3rem 9rem;
+  text-align: center;
+}
+.closing-rule {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  margin: 0 auto 3rem;
+  opacity: .5;
+}
+.closing-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2.8vw, 1.8rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.65;
+  margin-bottom: 3rem;
+}
+.closing-quote em { color: var(--gold); }
+.closing-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ═══ FOOTER ═══ */
+.footer { border-top: 1px solid var(--border); padding: 2.5rem 3rem; }
+.footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.footer-copy { font-size: .78rem; color: var(--cream-f); }
+.footer-links { display: flex; gap: 1.5rem; list-style: none; }
+.footer-links a { color: var(--cream-f); text-decoration: none; font-size: .78rem; transition: color .3s; }
+.footer-links a:hover { color: var(--gold); }
+
+/* ═══ BTN ═══ */
+.btn { display: inline-flex; align-items: center; gap: .5rem; padding: .85rem 2rem; border-radius: 4px; font-family: var(--sans); font-size: .85rem; font-weight: 500; letter-spacing: .05em; text-decoration: none; transition: all .3s; cursor: pointer; border: none; }
+.btn-gold { background: var(--gold); color: #0C0F0E; }
+.btn-gold:hover { background: var(--gold-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,.25); }
+.btn-ghost { background: transparent; color: var(--cream); border: 1px solid var(--border-h); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+[data-theme="light"] .btn-gold { color: #F5EFE3; }
+
+/* ═══ REVEAL ═══ */
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity .85s cubic-bezier(.22,.6,.36,1), transform .85s cubic-bezier(.22,.6,.36,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .subtopics-grid { grid-template-columns: 1fr; }
+  .page-hero { padding: 0 1.5rem 5rem; }
+  .article-wrap { padding: 5rem 1.5rem 3rem; }
+  .video-section { padding: 4rem 1.5rem; }
+  .subtopics-section { padding: 5rem 1.5rem; }
+  .closing-section { padding: 3rem 1.5rem 6rem; }
+  .chapter-bg-num { font-size: 8rem; right: -1rem; }
+  .nav { padding: 1rem 1.5rem; }
+  .nav.scrolled { padding: .7rem 1.5rem; }
+  .nav-links { gap: 1.2rem; }
+  .nav-links a { font-size: .72rem; }
+}
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .page-hero h1 { font-size: 2.2rem; }
+  .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+  .subtopic-item { padding: 1.6rem 1.2rem; gap: 1rem; }
+  .pullquote { padding: 1.4rem 1.6rem; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV (outside smooth container — position:fixed works correctly) ═══ -->
+<nav class="nav" id="nav">
+  <a href="ЕВА в html.html" class="nav-logo">Методология <em>Созидания</em></a>
+  <ul class="nav-links">
+    <li><a href="ЕВА в html.html#questions">Вопросы</a></li>
+    <li><a href="ЕВА в html.html#about">О проекте</a></li>
+    <li><a href="ЕВА в html.html#topics">Темы</a></li>
+    <li><a href="ЕВА в html.html#start">С чего начать</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+    <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+    <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  </button>
+</nav>
+
+<!-- ═══ SMOOTH SCROLL WRAPPER ═══ -->
+<div class="smooth-container" id="smoothContainer">
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg" id="heroBg"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <a href="ЕВА в html.html">Главная</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="ЕВА в html.html#topics">Темы</a>
+        <span class="breadcrumb-sep">/</span>
+        <span>Общество и процессы</span>
+      </div>
+      <span class="topic-tag">Общество и процессы</span>
+      <h1>Как понимать<br>происходящее<br>в <em>обществе</em></h1>
+      <div class="hero-rule"></div>
+      <p class="page-hero-sub">Почему события повторяются и кто за ними стоит. Методология, которая позволяет видеть причины — не мнений и версий, а самого устройства общественных процессов.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE BODY -->
+  <div class="article-wrap">
+    <div class="article-body">
+
+      <div class="chapter">
+        <span class="chapter-bg-num">01</span>
+
+        <div class="pullquote reveal">
+          <p>Новости сменяют друг друга, но ничего не меняется. Кризисы повторяются. Политики говорят одно — происходит другое. Есть ощущение, что за происходящим стоит что-то, чего не видно в потоке событий.<br><br>
+          Это ощущение — не паранойя. Это интуиция системного мышления, которая пока не получила инструмента.</p>
+        </div>
+
+        <div class="body-text reveal">
+          <p>Любое общество — это не хаос, а управляемый процесс. Управление может быть явным или скрытым, осознанным или стихийным — но оно всегда есть. Понять общество — значит научиться видеть: кто ставит цели, какими средствами они достигаются и почему большинство людей об этом не задумывается.</p>
+          <p>Управление обществом начинается не с армий и законов. Оно начинается с картины мира, которую люди считают «само собой разумеющейся». Кто формирует мировоззрение — тот и управляет на самом глубоком уровне. Это не конспирология — это управленческая логика, которую можно проверить на любом историческом примере.</p>
+          <p>Почему одни люди понимают устройство системы, а другие — нет? Это вопрос не об уме и не о происхождении. Это вопрос о том, какое мировоззрение человек получил и насколько он склонен думать самостоятельно.</p>
+          <p>Понятие «толпо-элитаризм» используется не как оскорбление, а как описание социального устройства, при котором большинство людей воспринимает готовые оценки вместо того, чтобы вырабатывать собственное понимание. Это не приговор — это стартовая точка, которую можно изменить.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="video-section">
+    <div class="video-inner reveal">
+      <div class="video-header">
+        <span class="video-label">Видеовведение</span>
+        <h2 class="video-title">Об устройстве общества<br><em>В.А. Ефимов</em></h2>
+      </div>
+      <div class="video-frame">
+        <!--
+          ВСТАВЬТЕ СЮДА EMBED-КОД ВИДЕО:
+
+          YouTube:
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+
+          RuTube:
+          <iframe src="https://rutube.ru/play/embed/VIDEO_ID"
+            frameborder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen
+            mozallowfullscreen allowfullscreen></iframe>
+        -->
+        <div class="video-placeholder">
+          <div class="video-play-ring">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+          </div>
+          <p>Видео будет добавлено</p>
+        </div>
+      </div>
+      <p class="video-caption">В. А. Ефимов — лекция об управлении обществом и основах ДОТУ</p>
+    </div>
+  </div>
+
+  <!-- SUBTOPICS -->
+  <div class="subtopics-section">
+    <div class="subtopics-grid reveal">
+
+      <div class="subtopic-item">
+        <span class="subtopic-n">01</span>
+        <div class="subtopic-text">
+          <h4>Почему события повторяются?</h4>
+          <p>Циклы кризисов — случайность или закономерность? Что стоит за повторением исторических паттернов.</p>
+          <span class="subtopic-soon">Скоро</span>
+        </div>
+      </div>
+
+      <div class="subtopic-item">
+        <span class="subtopic-n">02</span>
+        <div class="subtopic-text">
+          <h4>Как работает управление обществом?</h4>
+          <p>Кто реально ставит цели и какими средствами они достигаются. Явное и скрытое управление.</p>
+          <span class="subtopic-soon">Скоро</span>
+        </div>
+      </div>
+
+      <div class="subtopic-item">
+        <span class="subtopic-n">03</span>
+        <div class="subtopic-text">
+          <h4>Что такое 6 приоритетов?</h4>
+          <p>От оружия — к мировоззрению: как устроена иерархия влияния и почему «мягкая» сила сильнее.</p>
+          <span class="subtopic-soon">Скоро</span>
+        </div>
+      </div>
+
+      <div class="subtopic-item">
+        <span class="subtopic-n">04</span>
+        <div class="subtopic-text">
+          <h4>Что такое «толпо-элитаризм»?</h4>
+          <p>Почему большинство не понимает происходящего — и как это изменить. Социальное устройство без ярлыков.</p>
+          <span class="subtopic-soon">Скоро</span>
+        </div>
+      </div>
+
+      <div class="subtopic-item">
+        <span class="subtopic-n">05</span>
+        <div class="subtopic-text">
+          <h4>Роль информации и культуры</h4>
+          <p>Почему «мягкая сила» сильнее армий. Как информация формирует реальность, которую люди считают объективной.</p>
+          <span class="subtopic-soon">Скоро</span>
+        </div>
+      </div>
+
+      <div class="subtopic-item">
+        <span class="subtopic-n">06</span>
+        <div class="subtopic-text">
+          <h4>Что могу сделать я?</h4>
+          <p>Личная ответственность в общественном процессе. Что реально меняется, когда человек начинает понимать.</p>
+          <span class="subtopic-soon">Скоро</span>
+        </div>
+      </div>
+
+    </div>
+    <p class="subtopics-caption reveal reveal-delay-1">Каждый вопрос — отдельный вход</p>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing-section reveal">
+    <div class="closing-rule"></div>
+    <p class="closing-quote">Понимать общество — не значит бояться его или осуждать. Это значит видеть <em>причины</em> там, где раньше видел только следствия.</p>
+    <div class="closing-btns">
+      <a href="ЕВА в html.html#start" class="btn btn-gold">С чего начать →</a>
+      <a href="ЕВА в html.html#topics" class="btn btn-ghost">Все темы</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-copy">&copy; 2025 Методология Созидания. Проект развивается.</p>
+      <ul class="footer-links">
+        <li><a href="#">О проекте</a></li>
+        <li><a href="#">Материалы</a></li>
+        <li><a href="#">Контакты</a></li>
+        <li><a href="#">Подписка</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</div><!-- /smooth-container -->
+
+<script>
+// ── Theme init ──
+(function() {
+  const saved = localStorage.getItem('ms-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+})();
+
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const html = document.documentElement;
+  const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('ms-theme', next);
+});
+
+// ── Smooth scroll ──
+const sc = document.getElementById('smoothContainer');
+let currentY = 0;
+let targetY = 0;
+const EASE = 0.075;
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+function syncBodyHeight() {
+  document.body.style.height = sc.offsetHeight + 'px';
+}
+
+window.addEventListener('scroll', () => {
+  targetY = window.scrollY;
+}, { passive: true });
+
+// ── Nav scroll state ──
+const nav = document.getElementById('nav');
+
+// ── Reveal on scroll ──
+function checkReveals() {
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.91 && rect.bottom > 0) {
+      el.classList.add('visible');
+    }
+  });
+}
+
+// ── Hero parallax ──
+const heroBg = document.getElementById('heroBg');
+document.querySelector('.page-hero').addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 2;
+  const y = (e.clientY / window.innerHeight - 0.5) * 2;
+  heroBg.style.transform = `translate(${x * 10}px, ${y * 10}px) scale(1.04)`;
+}, { passive: true });
+
+// ── RAF loop ──
+function tick() {
+  currentY = lerp(currentY, targetY, EASE);
+  const y = Math.round(currentY * 100) / 100;
+  sc.style.transform = `translateY(${-y}px)`;
+  nav.classList.toggle('scrolled', currentY > 60);
+  checkReveals();
+  requestAnimationFrame(tick);
+}
+
+window.addEventListener('resize', syncBodyHeight, { passive: true });
+window.addEventListener('load', syncBodyHeight);
+syncBodyHeight();
+requestAnimationFrame(tick);
+</script>
+</body>
+</html>
